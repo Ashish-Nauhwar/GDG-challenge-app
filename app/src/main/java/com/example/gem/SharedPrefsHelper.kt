@@ -22,6 +22,10 @@ class SharedPrefsHelper(context: Context) {
         get() = prefs.getInt("TOTAL_XP", 0)
         set(value) = prefs.edit().putInt("TOTAL_XP", value).apply()
 
+    var themeMode: String
+        get() = prefs.getString("THEME_MODE", "system") ?: "system"
+        set(value) = prefs.edit().putString("THEME_MODE", value).apply()
+
     fun addXp(xp: Int) {
         totalXp += xp
     }

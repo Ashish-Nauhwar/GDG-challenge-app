@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="primary">#6200EE</color>
-    <color name="primary_dark">#3700B3</color>
-    <color name="accent">#03DAC5</color>
-    <color name="correct_green">#4CAF50</color>
-    <color name="wrong_red">#F44336</color>
-    <color name="bg_dark">#121212</color>
-    <color name="bg_card">#1E1E1E</color>
-    <color name="text_light">#E0E0E0</color>
-    <color name="boss_red">#D32F2F</color>
-    <color name="xp_gold">#FFC107</color>
-    <color name="grey">#9E9E9E</color>
+    <!-- Primary branding -->
+    <color name="color_primary">#6200EE</color>
+    <color name="color_primary_dark">#3700B3</color>
+    <color name="text_on_primary">#FFFFFF</color>
+
+    <!-- Background & Surfaces -->
+    <color name="bg_main">#F3F4F6</color>
+    <color name="bg_card">#FFFFFF</color>
+    <color name="bg_option">#E5E7EB</color>
+
+    <!-- Typography -->
+    <color name="text_primary">#111827</color>
+    <color name="text_secondary">#4B5563</color>
+
+    <!-- Semantic -->
+    <color name="color_success">#4CAF50</color>
+    <color name="color_error">#F44336</color>
+    <color name="color_xp">#FF9800</color>
+    <color name="color_outline">#D1D5DB</color>
+    <color name="color_disabled">#9E9E9E</color>
 </resources>

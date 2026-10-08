@@ -9,4 +9,30 @@
     <string name="message_perfect">Perfect!</string>
     <string name="message_good_job">Good job!</string>
     <string name="message_good_try">Good try!</string>
+    <string name="points_format">+%1$d Points\nStreak 🔥 %2$d</string>
+
+    <string name="quiz_complete_title">🏆 QUIZ COMPLETE</string>
+    <string name="accuracy_format">Accuracy: %1$d%%</string>
+
+    <string name="answer_none">Your Answer: None (Skipped/Timeout)</string>
+    <string name="answer_format">Your Answer: %1$s</string>
+
+    <!-- Theme & Home Strings -->
+    <string name="theme_choose">Choose Theme</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">System Default</string>
+    <string name="best_score_format">🏆 Best Score: %1$d</string>
+    <string name="best_streak_format">🔥 Best Streak: %1$d</string>
+    <string name="total_xp_format">⭐ XP: %1$d</string>
+    <string name="title_home">GEM QUIZ ARENA</string>
+    <string name="battle_score_format">Battle Score: %1$d</string>
+    <string name="boss_defeated">👑 BOSS DEFEATED!</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="mode_battle">Mode: QUIZ BATTLE</string>
+    <string name="xp_earned_format">+%1$d XP</string>
+    <string name="time_up">Time\'s Up!</string>
+    <string name="correct_answer_format">Correct Answer: %1$s</string>
+    <string name="explanation_format">Explanation: %1$s</string>
+    <string name="player_hearts_content">Heart</string>
 </resources>

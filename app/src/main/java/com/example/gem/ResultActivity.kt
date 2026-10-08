@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 class ResultActivity : AppCompatActivity() {
 
@@ -33,37 +34,37 @@ class ResultActivity : AppCompatActivity() {
         var xpEarned: Int
 
         if (mode == "NORMAL") {
-            tvTitle.text = "🏆 QUIZ COMPLETE"
+            tvTitle.text = getString(R.string.quiz_complete_title)
             val totalQuestions = SessionData.reviewQuestions.size
             val correctCount = SessionData.reviewQuestions.indices.count { i ->
-                (i < SessionData.userAnswers.size) &&
-                (SessionData.userAnswers[i] == SessionData.reviewQuestions[i].correctAnswerIndex)
+                i < SessionData.userAnswers.size && 
+                SessionData.userAnswers[i] == SessionData.reviewQuestions[i].correctAnswerIndex 
             }
             val acc = if (totalQuestions > 0) (correctCount * 100) / totalQuestions else 0
             
             tvScore.text = getString(R.string.score_format, score)
-            tvAccuracy.text = "Accuracy: $acc%"
-            tvStreak.text = "Streak: $streak"
+            tvAccuracy.text = getString(R.string.accuracy_format, acc)
+            tvStreak.text = getString(R.string.streak_format, streak)
             
             xpEarned = (correctCount * 10) + 20
             
         } else {
             // Battle mode
             if (bossDefeated) {
-                tvTitle.text = "👑 BOSS DEFEATED!"
-                tvTitle.setTextColor(resources.getColor(R.color.xp_gold, theme))
+                tvTitle.text = getString(R.string.boss_defeated)
+                tvTitle.setTextColor(ContextCompat.getColor(this, R.color.color_xp))
                 xpEarned = score + 50
             } else {
-                tvTitle.text = "GAME OVER"
-                tvTitle.setTextColor(resources.getColor(R.color.wrong_red, theme))
+                tvTitle.text = getString(R.string.game_over)
+                tvTitle.setTextColor(ContextCompat.getColor(this, R.color.color_error))
                 xpEarned = score
             }
-            tvScore.text = "Battle Score: $score"
-            tvAccuracy.text = "Mode: QUIZ BATTLE"
-            tvStreak.text = "Best Streak: $streak"
+            tvScore.text = getString(R.string.battle_score_format, score)
+            tvAccuracy.text = getString(R.string.mode_battle)
+            tvStreak.text = getString(R.string.best_streak_format, streak)
         }
 
-        tvXp.text = "+$xpEarned XP"
+        tvXp.text = getString(R.string.xp_earned_format, xpEarned)
 
         // Update SharedPreferences
         prefs.addXp(xpEarned)

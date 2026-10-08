@@ -1,70 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GEM QUIZ ARENA"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_marginBottom="40dp" />
+    android:background="@drawable/background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_rounded"
+        android:layout_centerInParent="true"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:layout_marginBottom="40dp">
-
+        android:gravity="center"
+        android:padding="24dp">
+        <!-- Content here -->
         <TextView
-            android:id="@+id/tvBestScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🏆 Best Score: 0"
-            android:textColor="@color/text_light"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"/>
+            android:text="@string/title_home"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="40dp" />
 
-        <TextView
-            android:id="@+id/tvBestStreak"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🔥 Best Streak: 0"
-            android:textColor="@color/text_light"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"/>
+            android:background="@drawable/bg_rounded"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:layout_marginBottom="40dp">
 
-        <TextView
-            android:id="@+id/tvTotalXp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="⭐ XP: 0"
-            android:textColor="@color/xp_gold"
+            <TextView
+                android:id="@+id/tvBestScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏆 Best Score: 0"
+                android:textColor="@color/text_secondary"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvBestStreak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔥 Best Streak: 0"
+                android:textColor="@color/text_secondary"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvTotalXp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⭐ XP: 0"
+                android:textColor="@color/color_xp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnStartQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="START QUIZ"
+            android:textColor="@color/text_on_primary"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnQuizBattle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="QUIZ BATTLE"
+            android:textColor="@color/text_on_primary"
+            android:backgroundTint="@color/color_error"
+            android:textSize="18sp"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnStartQuiz"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="START QUIZ"
-        android:textSize="18sp"
-        android:layout_marginBottom="16dp"/>
+    <ImageView
+        android:id="@+id/btnThemeToggle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="centerInside"
+        app:tint="@color/text_primary"
+        android:elevation="4dp" />
 
-    <Button
-        android:id="@+id/btnQuizBattle"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="QUIZ BATTLE"
-        android:backgroundTint="@color/boss_red"
-        android:textSize="18sp"/>
-</LinearLayout>
+</RelativeLayout>
