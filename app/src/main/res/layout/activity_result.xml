@@ -1,75 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
 
     <TextView
-        android:id="@+id/quizCompletedText"
+        android:id="@+id/tvResultTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quiz Completed !!"
+        android:text="🏆 QUIZ COMPLETE"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="80dp"/>
+        android:textColor="@color/white"
+        android:layout_marginBottom="32dp" />
 
-    <TextView
-        android:id="@+id/yourScoreText"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Your Score"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/quizCompletedText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:background="@drawable/bg_rounded"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp"
+        android:layout_marginBottom="32dp">
 
-    <TextView
-        android:id="@+id/scoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="0/4"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/yourScoreText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/tvScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score: 80 / 100"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
 
-    <TextView
-        android:id="@+id/messageText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Great job!"
-        android:textStyle="italic|bold"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/scoreText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/tvAccuracyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accuracy: 80%"
+            android:textColor="@color/text_light"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvBestStreakText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Best Streak: 4"
+            android:textColor="@color/text_light"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvXpEarnedText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+120 XP"
+            android:textColor="@color/xp_gold"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/playAgainButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="PLAY AGAIN"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/messageText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:id="@+id/btnReview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="REVIEW ANSWERS"
+        android:backgroundTint="@color/primary_dark"
+        android:layout_marginBottom="12dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnPlayAgain"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="PLAY AGAIN"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnBattle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="QUIZ BATTLE"
+        android:backgroundTint="@color/boss_red"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="HOME"
+        android:backgroundTint="@color/grey"/>
+</LinearLayout>
