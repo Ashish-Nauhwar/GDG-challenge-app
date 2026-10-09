@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary branding -->
-    <color name="color_primary">#6200EE</color>
-    <color name="color_primary_dark">#3700B3</color>
-    <color name="text_on_primary">#FFFFFF</color>
-
     <!-- Background & Surfaces -->
-    <color name="bg_main">#F3F4F6</color>
+    <color name="bg_main">#F6F7FF</color>
     <color name="bg_card">#FFFFFF</color>
-    <color name="bg_option">#E5E7EB</color>
+    <color name="bg_card_secondary">#EEF0FF</color>
 
     <!-- Typography -->
-    <color name="text_primary">#111827</color>
-    <color name="text_secondary">#4B5563</color>
+    <color name="text_primary">#15182B</color>
+    <color name="text_secondary">#68708A</color>
+    <color name="text_on_primary">#FFFFFF</color>
+
+    <!-- Branding -->
+    <color name="color_primary">#6C63FF</color>
+    <color name="color_primary_dark">#5148D8</color>
+    <color name="color_accent">#22C7D8</color>
 
     <!-- Semantic -->
-    <color name="color_success">#4CAF50</color>
-    <color name="color_error">#F44336</color>
-    <color name="color_xp">#FF9800</color>
+    <color name="color_success">#22A06B</color>
+    <color name="color_error">#E5484D</color>
+    <color name="color_warning">#F2A93B</color>
+    <color name="color_xp">#F2A93B</color>
     <color name="color_outline">#D1D5DB</color>
     <color name="color_disabled">#9E9E9E</color>
+
+    <!-- Transparent overlays -->
+    <color name="overlay_dark">#66000000</color>
 </resources>

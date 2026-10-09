@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
@@ -14,62 +15,71 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
 
         val prefs = SharedPrefsHelper(this)
+        prefs.recordActivityDay()
 
+        val tvDomainLabel = findViewById<TextView>(R.id.tvDomainLabel)
         val tvTitle = findViewById<TextView>(R.id.tvResultTitle)
         val tvScore = findViewById<TextView>(R.id.tvScoreText)
+        val tvTotal = findViewById<TextView>(R.id.tvTotalQuestions)
+        val pbScoreRing = findViewById<ProgressBar>(R.id.pbScoreRing)
         val tvAccuracy = findViewById<TextView>(R.id.tvAccuracyText)
         val tvStreak = findViewById<TextView>(R.id.tvBestStreakText)
         val tvXp = findViewById<TextView>(R.id.tvXpEarnedText)
         
-        val btnReview = findViewById<Button>(R.id.btnReview)
         val btnPlayAgain = findViewById<Button>(R.id.btnPlayAgain)
-        val btnBattle = findViewById<Button>(R.id.btnBattle)
+        val btnReview = findViewById<Button>(R.id.btnReview)
         val btnHome = findViewById<Button>(R.id.btnHome)
+        val btnMistakes = findViewById<Button>(R.id.btnMistakes)
 
-        val score = intent.getIntExtra("SCORE", 0)
+        val score = intent.getIntExtra("SCORE", 0) // Passed as XP
+        val total = intent.getIntExtra("TOTAL", 10)
+        val correctCount = intent.getIntExtra("CORRECT_COUNT", 0)
         val streak = intent.getIntExtra("STREAK", 0)
         val mode = intent.getStringExtra("MODE") ?: "NORMAL"
         val bossDefeated = intent.getBooleanExtra("BOSS_DEFEATED", false)
 
-        var xpEarned: Int
+        var xpEarned = score
 
         if (mode == "NORMAL") {
-            tvTitle.text = getString(R.string.quiz_complete_title)
-            val totalQuestions = SessionData.reviewQuestions.size
-            val correctCount = SessionData.reviewQuestions.indices.count { i ->
-                i < SessionData.userAnswers.size && 
-                SessionData.userAnswers[i] == SessionData.reviewQuestions[i].correctAnswerIndex 
+            tvDomainLabel.text = getString(R.string.result_domain_complete, SessionData.selectedDomain.uppercase())
+            
+            val acc = if (total > 0) (correctCount * 100) / total else 0
+            
+            tvTitle.text = when {
+                acc == 100 -> getString(R.string.result_title_perfect)
+                acc >= 70 -> getString(R.string.result_title_good)
+                else -> getString(R.string.result_title_try)
             }
-            val acc = if (totalQuestions > 0) (correctCount * 100) / totalQuestions else 0
             
-            tvScore.text = getString(R.string.score_format, score)
-            tvAccuracy.text = getString(R.string.accuracy_format, acc)
-            tvStreak.text = getString(R.string.streak_format, streak)
+            tvScore.text = correctCount.toString()
+            tvTotal.text = getString(R.string.result_total_format, total)
+            pbScoreRing.progress = acc
+            tvAccuracy.text = getString(R.string.accuracy_value_format, acc)
+            tvStreak.text = streak.toString()
             
-            xpEarned = (correctCount * 10) + 20
-            
+            // Stats check
+            prefs.questionsAnswered += total
         } else {
             // Battle mode
+            tvDomainLabel.text = "QUIZ BATTLE COMPLETE"
             if (bossDefeated) {
-                tvTitle.text = getString(R.string.boss_defeated)
+                tvTitle.text = getString(R.string.result_title_battle_win)
                 tvTitle.setTextColor(ContextCompat.getColor(this, R.color.color_xp))
-                xpEarned = score + 50
+                xpEarned += 50
             } else {
-                tvTitle.text = getString(R.string.game_over)
+                tvTitle.text = getString(R.string.result_title_battle_lose)
                 tvTitle.setTextColor(ContextCompat.getColor(this, R.color.color_error))
-                xpEarned = score
             }
-            tvScore.text = getString(R.string.battle_score_format, score)
-            tvAccuracy.text = getString(R.string.mode_battle)
-            tvStreak.text = getString(R.string.best_streak_format, streak)
+            tvScore.text = score.toString()
+            tvTotal.text = " XP"
+            pbScoreRing.progress = if (bossDefeated) 100 else (score * 100 / 120)
+            tvAccuracy.text = "BATTLE"
+            tvStreak.text = streak.toString()
         }
 
         tvXp.text = getString(R.string.xp_earned_format, xpEarned)
 
-        // Update SharedPreferences
         prefs.addXp(xpEarned)
-        prefs.bestScore = score
-        prefs.bestStreak = streak
 
         btnReview.setOnClickListener {
             startActivity(Intent(this, ReviewActivity::class.java))
@@ -81,8 +91,8 @@ class ResultActivity : AppCompatActivity() {
             finish()
         }
 
-        btnBattle.setOnClickListener {
-            startActivity(Intent(this, BattleActivity::class.java))
+        btnMistakes.setOnClickListener {
+            startActivity(Intent(this, MistakeVaultActivity::class.java))
             finish()
         }
 

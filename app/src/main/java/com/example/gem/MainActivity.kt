@@ -3,59 +3,125 @@ package com.example.gem
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import android.widget.ImageView
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var prefsHelper: SharedPrefsHelper
+    private var selectedDomain = ""
+    private var selectedCount = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         prefsHelper = SharedPrefsHelper(this)
-        
-        // Apply theme before super.onCreate
         applyTheme(prefsHelper.themeMode)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tvBestScore = findViewById<TextView>(R.id.tvBestScore)
-        val tvBestStreak = findViewById<TextView>(R.id.tvBestStreak)
-        val tvTotalXp = findViewById<TextView>(R.id.tvTotalXp)
-        val btnStartQuiz = findViewById<Button>(R.id.btnStartQuiz)
-        val btnQuizBattle = findViewById<Button>(R.id.btnQuizBattle)
-        val btnThemeToggle = findViewById<ImageView>(R.id.btnThemeToggle)
+        // Record activity day if coming back
+        prefsHelper.recordActivityDay()
 
-        tvBestScore.text = getString(R.string.best_score_format, prefsHelper.bestScore)
-        tvBestStreak.text = getString(R.string.best_streak_format, prefsHelper.bestStreak)
-        tvTotalXp.text = getString(R.string.total_xp_format, prefsHelper.totalXp)
-
-        btnStartQuiz.setOnClickListener {
-            startActivity(Intent(this, QuizActivity::class.java))
-        }
-
-        btnQuizBattle.setOnClickListener {
-            startActivity(Intent(this, BattleActivity::class.java))
-        }
-
-        updateThemeIcon(btnThemeToggle)
-        btnThemeToggle.setOnClickListener {
-            toggleTheme()
-        }
+        setupUI()
+        setupListeners()
     }
 
     override fun onResume() {
         super.onResume()
-        val tvBestScore = findViewById<TextView>(R.id.tvBestScore)
-        val tvBestStreak = findViewById<TextView>(R.id.tvBestStreak)
-        val tvTotalXp = findViewById<TextView>(R.id.tvTotalXp)
+        setupUI()
+    }
 
-        tvBestScore.text = getString(R.string.best_score_format, prefsHelper.bestScore)
-        tvBestStreak.text = getString(R.string.best_streak_format, prefsHelper.bestStreak)
-        tvTotalXp.text = getString(R.string.total_xp_format, prefsHelper.totalXp)
+    private fun setupUI() {
+        val tvCurrentStreak = findViewById<TextView>(R.id.tvCurrentStreak)
+        val tvTotalXp = findViewById<TextView>(R.id.tvTotalXp)
+        
+        tvCurrentStreak.text = getString(R.string.streak_days_format, prefsHelper.currentStreak)
+        tvTotalXp.text = prefsHelper.totalXp.toString()
+
+        val btnThemeToggle = findViewById<ImageView>(R.id.btnThemeToggle)
+        updateThemeIcon(btnThemeToggle)
+
+        updateStartButton()
+        updateDomainStats()
+    }
+
+    private fun setupListeners() {
+        val btnThemeToggle = findViewById<ImageView>(R.id.btnThemeToggle)
+        btnThemeToggle.setOnClickListener {
+            toggleTheme()
+        }
+
+        val rgDomains = findViewById<RadioGroup>(R.id.rgDomains)
+        rgDomains.setOnCheckedChangeListener { _, checkedId ->
+            selectedDomain = when (checkedId) {
+                R.id.rbDomainDSA -> "DSA"
+                R.id.rbDomainJS -> "JavaScript"
+                R.id.rbDomainKotlin -> "Kotlin"
+                R.id.rbDomainJava -> "Java"
+                R.id.rbDomainPython -> "Python"
+                else -> ""
+            }
+            updateDomainStats()
+            updateStartButton()
+        }
+
+        val rgCount = findViewById<RadioGroup>(R.id.rgCount)
+        rgCount.setOnCheckedChangeListener { _, checkedId ->
+            selectedCount = when (checkedId) {
+                R.id.rbCount5 -> 5
+                R.id.rbCount10 -> 10
+                R.id.rbCount15 -> 15
+                R.id.rbCount20 -> 20
+                R.id.rbCount25 -> 25
+                R.id.rbCount30 -> 30
+                else -> 10
+            }
+            val tvLifelineNotice = findViewById<TextView>(R.id.tvLifelineNotice)
+            tvLifelineNotice.visibility = if (selectedCount >= 10) View.VISIBLE else View.INVISIBLE
+            updateStartButton()
+        }
+        
+        // Defaults
+        findViewById<RadioButton>(R.id.rbCount10).isChecked = true
+
+        findViewById<Button>(R.id.btnStartQuiz).setOnClickListener {
+            if (selectedDomain.isNotEmpty()) {
+                SessionData.selectedDomain = selectedDomain
+                SessionData.selectedCount = selectedCount
+                SessionData.isMistakePractice = false
+                startActivity(Intent(this, QuizActivity::class.java))
+            }
+        }
+
+        findViewById<Button>(R.id.btnMistakeVault).setOnClickListener {
+            startActivity(Intent(this, MistakeVaultActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.btnQuizBattle).setOnClickListener {
+            startActivity(Intent(this, BattleActivity::class.java))
+        }
+    }
+
+    private fun updateDomainStats() {
+        val tvDomainStats = findViewById<TextView>(R.id.tvDomainStats)
+        if (selectedDomain.isEmpty()) {
+            tvDomainStats.text = getString(R.string.select_domain_stats)
+        } else {
+            val attempts = prefsHelper.getDomainAttempts(selectedDomain)
+            val accuracy = prefsHelper.getDomainAccuracy(selectedDomain)
+            tvDomainStats.text = getString(R.string.domain_stats_format, attempts, accuracy)
+        }
+    }
+
+    private fun updateStartButton() {
+        val btnStartQuiz = findViewById<Button>(R.id.btnStartQuiz)
+        btnStartQuiz.isEnabled = selectedDomain.isNotEmpty()
     }
 
     private fun applyTheme(themeMode: String) {
@@ -65,7 +131,6 @@ class MainActivity : AppCompatActivity() {
             else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
         }
         AppCompatDelegate.setDefaultNightMode(mode)
-        delegate.localNightMode = mode
     }
 
     private fun updateThemeIcon(button: ImageView) {
@@ -93,7 +158,6 @@ class MainActivity : AppCompatActivity() {
                 currentNightMode == Configuration.UI_MODE_NIGHT_YES
             }
         }
-        
         val newMode = if (currentIsDark) "light" else "dark"
         prefsHelper.themeMode = newMode
         applyTheme(newMode)

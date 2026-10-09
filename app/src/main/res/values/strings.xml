@@ -1,38 +1,79 @@
 <resources>
-    <string name="app_name">Gem Quiz Arena</string>
-    <string name="question_progress">%1$d/%2$d</string>
+    <string name="app_name">Gem CodeQuest</string>
+    <string name="title_home">CODEQUEST</string>
+    <string name="gem_logo_desc">GEM Logo</string>
+
+    <string name="hero_title">Level up your coding.</string>
+    <string name="hero_subtitle">Practice daily. Master concepts. Track your progress.</string>
+
+    <string name="stat_streak">🔥 STREAK</string>
+    <string name="stat_xp">⭐ TOTAL XP</string>
+    <string name="stat_best">🏆 BEST</string>
+
+    <string name="streak_days_format">%1$d days</string>
+
+    <string name="select_domain">Select Domain</string>
+    <string name="select_domain_stats">Select a domain to see stats</string>
+    <string name="domain_stats_format">Attempts: %1$d  •  Accuracy: %2$d%%</string>
+
+    <string name="question_count">Question Count</string>
+    <string name="lifeline_notice">2 lifeline uses included for 10+ questions.</string>
+    <string name="start_practice">START PRACTICE</string>
+    <string name="mistake_vault">MISTAKE VAULT</string>
+    <string name="quiz_battle">QUIZ BATTLE</string>
+
+    <string name="practice_title_format">%1$s PRACTICE</string>
+    <string name="question_label">QUESTION</string>
+    <string name="progress_format">%1$02d / %2$02d</string>
     <string name="score_format">Score: %1$d</string>
-    <string name="streak_format">🔥 Streak: %1$d</string>
-    <string name="select_an_answer">Select an Answer</string>
-    <string name="correct">Correct!</string>
-    <string name="wrong_answer">Incorrect!</string>
-    <string name="message_perfect">Perfect!</string>
-    <string name="message_good_job">Good job!</string>
-    <string name="message_good_try">Good try!</string>
-    <string name="points_format">+%1$d Points\nStreak 🔥 %2$d</string>
+    <string name="streak_format">🔥 %1$d streak</string>
+    <string name="timer_format">⏱ %1$ds</string>
+    <string name="btn_5050_format">50/50 (%1$d)</string>
+    <string name="btn_skip">SKIP</string>
+    <string name="btn_next">NEXT →</string>
+    <string name="btn_check">CHECK →</string>
 
-    <string name="quiz_complete_title">🏆 QUIZ COMPLETE</string>
-    <string name="accuracy_format">Accuracy: %1$d%%</string>
-
-    <string name="answer_none">Your Answer: None (Skipped/Timeout)</string>
-    <string name="answer_format">Your Answer: %1$s</string>
-
-    <!-- Theme & Home Strings -->
-    <string name="theme_choose">Choose Theme</string>
-    <string name="theme_light">Light</string>
-    <string name="theme_dark">Dark</string>
-    <string name="theme_system">System Default</string>
-    <string name="best_score_format">🏆 Best Score: %1$d</string>
-    <string name="best_streak_format">🔥 Best Streak: %1$d</string>
-    <string name="total_xp_format">⭐ XP: %1$d</string>
-    <string name="title_home">GEM QUIZ ARENA</string>
-    <string name="battle_score_format">Battle Score: %1$d</string>
-    <string name="boss_defeated">👑 BOSS DEFEATED!</string>
-    <string name="game_over">GAME OVER</string>
-    <string name="mode_battle">Mode: QUIZ BATTLE</string>
-    <string name="xp_earned_format">+%1$d XP</string>
-    <string name="time_up">Time\'s Up!</string>
+    <string name="dialog_correct">Correct!</string>
+    <string name="dialog_incorrect">Incorrect!</string>
+    <string name="dialog_time_up">Time\'s Up!</string>
+    <string name="points_format">+%1$d XP</string>
     <string name="correct_answer_format">Correct Answer: %1$s</string>
-    <string name="explanation_format">Explanation: %1$s</string>
-    <string name="player_hearts_content">Heart</string>
+    <string name="explanation_format">%1$s</string>
+    <string name="dialog_continue">CONTINUE</string>
+
+    <string name="result_title_perfect">Flawless execution!</string>
+    <string name="result_title_good">Great work!</string>
+    <string name="result_title_try">Keep practicing!</string>
+    <string name="result_title_battle_win">👑 BOSS DEFEATED!</string>
+    <string name="result_title_battle_lose">GAME OVER</string>
+
+    <string name="result_domain_complete">%1$s PRACTICE COMPLETE</string>
+    <string name="result_score_format">%1$d</string>
+    <string name="result_total_format">/ %1$d</string>
+    <string name="accuracy_label">ACCURACY</string>
+    <string name="accuracy_value_format">%1$d%%</string>
+    <string name="streak_label">STREAK</string>
+    <string name="xp_earned_label">XP EARNED</string>
+    <string name="xp_earned_format">+%1$d</string>
+
+    <string name="btn_practice_again">PRACTICE AGAIN →</string>
+    <string name="btn_review_answers">REVIEW ANSWERS</string>
+    <string name="btn_home">HOME</string>
+
+    <!-- Mistake Vault -->
+    <string name="vault_title">MISTAKE VAULT</string>
+    <string name="unresolved_label">UNRESOLVED</string>
+    <string name="domain_label">DOMAIN</string>
+    <string name="btn_practice_mistakes">PRACTICE MISTAKES →</string>
+    <string name="empty_vault">You\'re all caught up!\nComplete a quiz and we\'ll save anything you need to revisit.</string>
+    <string name="missed_times_format">Missed: %1$dx</string>
+    <string name="your_answer_format">Your Answer: %1$s</string>
+    <string name="your_answer_none">Your Answer: None (Skipped)</string>
+
+    <!-- Battle Mode -->
+    <string name="battle_title">QUIZ BATTLE</string>
+    <string name="crystal_boss">CRYSTAL BOSS</string>
+    <string name="boss_hp_format">%1$d / 100 HP</string>
+    <string name="player_label">PLAYER</string>
+    <string name="challenge_label">CHALLENGE</string>
 </resources>

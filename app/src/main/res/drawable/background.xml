@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Light mode subtle gradient -->
     <gradient
-        android:startColor="#F3F4F6"
-        android:endColor="#FFFFFF"
+        android:startColor="#EEF0FF"
+        android:centerColor="#F6F7FF"
+        android:endColor="#F6F7FF"
         android:angle="270" />
 </shape>

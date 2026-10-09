@@ -1,100 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
-
-    <TextView
-        android:id="@+id/tvResultTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🏆 QUIZ COMPLETE"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="@color/text_primary"
-        android:layout_marginBottom="32dp" />
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_rounded"
         android:orientation="vertical"
-        android:gravity="center"
-        android:padding="24dp"
-        android:layout_marginBottom="32dp">
+        android:gravity="center_horizontal"
+        android:padding="24dp">
 
         <TextView
-            android:id="@+id/tvScoreText"
+            android:id="@+id/tvDomainLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score: 80 / 100"
-            android:textColor="@color/text_primary"
-            android:textSize="22sp"
+            android:text="KOTLIN PRACTICE COMPLETE"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:id="@+id/tvAccuracyText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Accuracy: 80%"
             android:textColor="@color/text_secondary"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"/>
+            android:letterSpacing="0.1"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
 
         <TextView
-            android:id="@+id/tvBestStreakText"
+            android:id="@+id/tvResultTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Best Streak: 4"
-            android:textColor="@color/text_secondary"
-            android:textSize="18sp"
-            android:layout_marginBottom="16dp"/>
+            android:text="Excellent run!"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="32dp" />
 
-        <TextView
-            android:id="@+id/tvXpEarnedText"
-            android:layout_width="wrap_content"
+        <!-- Score Ring / Card -->
+        <RelativeLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="32dp">
+
+            <ProgressBar
+                android:id="@+id/pbScoreRing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circle_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="100"
+                android:progress="80" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tvScoreText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16"
+                    android:textColor="@color/text_primary"
+                    android:textSize="48sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvTotalQuestions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/ 20"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- Stats Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="+120 XP"
-            android:textColor="@color/color_xp"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
+            android:background="@drawable/bg_rounded"
+            android:elevation="2dp"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            android:baselineAligned="false"
+            android:layout_marginBottom="32dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACCURACY"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="4dp"/>
+                <TextView
+                    android:id="@+id/tvAccuracyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="80%"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@color/color_outline" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STREAK"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="4dp"/>
+                <TextView
+                    android:id="@+id/tvBestStreakText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@color/color_outline" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="XP EARNED"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="4dp"/>
+                <TextView
+                    android:id="@+id/tvXpEarnedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+120"
+                    android:textColor="@color/color_xp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Actions -->
+        <Button
+            android:id="@+id/btnPlayAgain"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:cornerRadius="16dp"
+            android:backgroundTint="@color/color_primary"
+            android:textColor="@color/text_on_primary"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="PRACTICE AGAIN →"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnReview"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:cornerRadius="14dp"
+            android:backgroundTint="@color/bg_card"
+            android:textColor="@color/color_primary"
+            android:textStyle="bold"
+            android:text="REVIEW ANSWERS"
+            android:elevation="2dp"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnHome"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="56dp"
+                app:cornerRadius="14dp"
+                android:backgroundTint="@color/bg_card_secondary"
+                android:textColor="@color/text_secondary"
+                android:textStyle="bold"
+                android:text="HOME"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnMistakes"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="56dp"
+                app:cornerRadius="14dp"
+                android:backgroundTint="@color/bg_card_secondary"
+                android:textColor="@color/color_error"
+                android:textStyle="bold"
+                android:text="MISTAKE VAULT"/>
+        </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnReview"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="REVIEW ANSWERS"
-        android:textColor="@color/text_on_primary"
-        android:backgroundTint="@color/color_primary_dark"
-        android:layout_marginBottom="12dp"/>
-
-    <Button
-        android:id="@+id/btnPlayAgain"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textColor="@color/text_on_primary"
-        android:text="PLAY AGAIN"
-        android:layout_marginBottom="12dp"/>
-
-    <Button
-        android:id="@+id/btnBattle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="QUIZ BATTLE"
-        android:textColor="@color/text_on_primary"
-        android:backgroundTint="@color/color_error"
-        android:layout_marginBottom="12dp"/>
-
-    <Button
-        android:id="@+id/btnHome"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="HOME"
-        android:textColor="@color/text_primary"
-        android:backgroundTint="@color/color_disabled"/>
-</LinearLayout>
+</ScrollView>

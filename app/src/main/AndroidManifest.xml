@@ -24,5 +24,6 @@
         <activity android:name=".BattleActivity" android:exported="false" />
         <activity android:name=".ResultActivity" android:exported="false" />
         <activity android:name=".ReviewActivity" android:exported="false" />
+        <activity android:name=".MistakeVaultActivity" android:exported="false" />
     </application>
 </manifest>
