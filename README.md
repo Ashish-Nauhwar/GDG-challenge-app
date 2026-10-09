@@ -34,3 +34,6 @@
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/gem.git
+
+   <img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/215e5ae0-87a7-4ec0-aa31-9735ea269888" />
+
